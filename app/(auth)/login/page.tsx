@@ -5,9 +5,9 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Chrome, Facebook } from "lucide-react";
 
 import { AuthLayout } from "@/components/auth/auth-layout";
+import { SocialAuth } from "@/components/auth/social-auth";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -20,12 +20,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/ui/password-input";
-import { Separator } from "@/components/ui/separator";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   password: z.string().min(6, "Password must be at least 6 characters"),
-  rememberMe: z.boolean().default(false),
+  rememberMe: z.boolean(),
 });
 
 type LoginForm = z.infer<typeof loginSchema>;
@@ -44,7 +43,6 @@ export default function LoginPage() {
 
   async function onSubmit(data: LoginForm) {
     setIsLoading(true);
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log(data);
     setIsLoading(false);
@@ -53,7 +51,6 @@ export default function LoginPage() {
   return (
     <AuthLayout
       title="Welcome back"
-      description="Sign in to your account to continue learning"
       footer={
         <p className="text-sm text-gray-600">
           Don&apos;t have an account?{" "}
@@ -141,26 +138,7 @@ export default function LoginPage() {
           >
             {isLoading ? "Signing in..." : "Sign in"}
           </Button>
-
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <Separator className="w-full" />
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-2 text-gray-500">Or continue with</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <Button variant="outline" type="button" disabled={isLoading}>
-              <Chrome className="w-4 h-4 mr-2" />
-              Google
-            </Button>
-            <Button variant="outline" type="button" disabled={isLoading}>
-              <Facebook className="w-4 h-4 mr-2" />
-              Facebook
-            </Button>
-          </div>
+          <SocialAuth isLoading={isLoading} />
         </form>
       </Form>
     </AuthLayout>

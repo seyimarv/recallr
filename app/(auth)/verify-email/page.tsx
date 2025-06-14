@@ -14,7 +14,6 @@ export default function VerifyEmailPage() {
   const [verificationStatus, setVerificationStatus] = React.useState<'pending' | 'success' | 'error'>('pending');
   const email = searchParams.get('email') || 'your email';
 
-  // Simulate email verification on component mount
   React.useEffect(() => {
     const token = searchParams.get('token');
     if (token) {
@@ -123,7 +122,6 @@ export default function VerifyEmailPage() {
     );
   }
 
-  // Default state - waiting for verification
   return (
     <AuthLayout
       title="Check your email"

@@ -26,8 +26,8 @@ export default function VerifyEmailPage() {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 2000));
     
-    // Simulate random success/failure for demo
-    const isSuccess = Math.random() > 0.3;
+    // Simulate random success/failure for demo (using token for validation)
+    const isSuccess = token.length > 10 ? Math.random() > 0.3 : false;
     setVerificationStatus(isSuccess ? 'success' : 'error');
     setIsLoading(false);
   }

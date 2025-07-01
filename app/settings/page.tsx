@@ -1,121 +1,105 @@
 "use client";
 
 import * as React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Settings, User, Bell, Shield, Palette } from "lucide-react";
+import { 
+  User, 
+  Bell, 
+  Shield, 
+  BookOpen, 
+  Palette 
+} from "lucide-react";
+
+import { Card } from "@/components/ui/card";
+import { AccountSettings } from "@/components/settings/account-settings";
+import { NotificationSettings } from "@/components/settings/notification-settings";
+import { PrivacySettings } from "@/components/settings/privacy-settings";
+import { StudySettings } from "@/components/settings/study-settings";
+import { AppearanceSettings } from "@/components/settings/appearance-settings";
+
+const tabs = [
+  {
+    id: "account",
+    label: "Account",
+    icon: User,
+    component: AccountSettings,
+  },
+  {
+    id: "notifications",
+    label: "Notifications",
+    icon: Bell,
+    component: NotificationSettings,
+  },
+  {
+    id: "privacy",
+    label: "Privacy",
+    icon: Shield,
+    component: PrivacySettings,
+  },
+  {
+    id: "study",
+    label: "Study",
+    icon: BookOpen,
+    component: StudySettings,
+  },
+  {
+    id: "appearance",
+    label: "Appearance",
+    icon: Palette,
+    component: AppearanceSettings,
+  },
+];
 
 export default function SettingsPage() {
+  const [activeTab, setActiveTab] = React.useState("account");
+
+  const activeComponent = tabs.find(tab => tab.id === activeTab)?.component;
+  const ActiveComponent = activeComponent || AccountSettings;
+
   return (
-    <div className="p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 p-6">
+      <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div>
+        <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-          <p className="text-muted-foreground">Manage your account preferences and app settings</p>
+          <p className="text-gray-600 mt-2">
+            Manage your account preferences and study settings
+          </p>
         </div>
 
-        {/* Settings Grid */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {/* Account Settings */}
-          <Card className="rounded-2xl border-0 bg-white shadow-sm hover:shadow-md transition-shadow">
-            <CardHeader className="pb-3">
-              <CardTitle className="flex items-center gap-3 text-lg font-semibold">
-                <div className="p-2 bg-blue-50 rounded-xl">
-                  <User className="h-5 w-5 text-blue-600" />
-                </div>
-                Account
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <p className="text-sm text-muted-foreground">
-                Manage your profile, email, and password settings.
-              </p>
-              <Button variant="outline" className="w-full rounded-xl">
-                Edit Profile
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Notifications */}
-          <Card className="rounded-2xl border-0 bg-white shadow-sm hover:shadow-md transition-shadow">
-            <CardHeader className="pb-3">
-              <CardTitle className="flex items-center gap-3 text-lg font-semibold">
-                <div className="p-2 bg-green-50 rounded-xl">
-                  <Bell className="h-5 w-5 text-green-600" />
-                </div>
-                Notifications
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <p className="text-sm text-muted-foreground">
-                Configure how you receive study reminders and updates.
-              </p>
-              <Button variant="outline" className="w-full rounded-xl">
-                Manage Alerts
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Privacy */}
-          <Card className="rounded-2xl border-0 bg-white shadow-sm hover:shadow-md transition-shadow">
-            <CardHeader className="pb-3">
-              <CardTitle className="flex items-center gap-3 text-lg font-semibold">
-                <div className="p-2 bg-purple-50 rounded-xl">
-                  <Shield className="h-5 w-5 text-purple-600" />
-                </div>
-                Privacy
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <p className="text-sm text-muted-foreground">
-                Control your data privacy and sharing preferences.
-              </p>
-              <Button variant="outline" className="w-full rounded-xl">
-                Privacy Settings
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Appearance */}
-          <Card className="rounded-2xl border-0 bg-white shadow-sm hover:shadow-md transition-shadow">
-            <CardHeader className="pb-3">
-              <CardTitle className="flex items-center gap-3 text-lg font-semibold">
-                <div className="p-2 bg-orange-50 rounded-xl">
-                  <Palette className="h-5 w-5 text-orange-600" />
-                </div>
-                Appearance
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <p className="text-sm text-muted-foreground">
-                Customize the app's theme and display preferences.
-              </p>
-              <Button variant="outline" className="w-full rounded-xl">
-                Theme Options
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Study Settings */}
-          <Card className="rounded-2xl border-0 bg-white shadow-sm hover:shadow-md transition-shadow">
-            <CardHeader className="pb-3">
-              <CardTitle className="flex items-center gap-3 text-lg font-semibold">
-                <div className="p-2 bg-emerald-50 rounded-xl">
-                  <Settings className="h-5 w-5 text-emerald-600" />
-                </div>
-                Study Settings
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <p className="text-sm text-muted-foreground">
-                Adjust review intervals, difficulty settings, and goals.
-              </p>
-              <Button variant="outline" className="w-full rounded-xl">
-                Configure
-              </Button>
-            </CardContent>
-          </Card>
+        {/* Tab Navigation */}
+        <div className="mb-8">
+          <div className="border-b border-gray-200">
+            <nav className="flex space-x-8">
+              {tabs.map((tab) => {
+                const Icon = tab.icon;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`
+                      flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors
+                      ${activeTab === tab.id
+                        ? "border-blue-500 text-blue-600"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                      }
+                    `}
+                  >
+                    <Icon className="h-4 w-4" />
+                    <span>{tab.label}</span>
+                  </button>
+                );
+              })}
+            </nav>
+          </div>
         </div>
+
+        {/* Content */}
+        <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-xl">
+          <div className="p-8">
+            <ActiveComponent />
+          </div>
+        </Card>
       </div>
+    </div>
   );
 } 

@@ -152,7 +152,7 @@ export function QuizEditor({ question, onSave, onDelete, onCancel }: QuizEditorP
             <Dropdown
               value={questionType}
               onValueChange={(value) => {
-                setQuestionType(value as any);
+                setQuestionType(value as "multiple-choice" | "true-false" | "fill-in-blank");
                 if (value === "true-false") {
                   setOptions(["True", "False"]);
                   setCorrectAnswer(0);
@@ -261,7 +261,7 @@ export function QuizEditor({ question, onSave, onDelete, onCancel }: QuizEditorP
                   key={level}
                   variant={difficulty === level ? "default" : "outline"}
                   size="sm"
-                  onClick={() => setDifficulty(level as any)}
+                  onClick={() => setDifficulty(level as "easy" | "medium" | "hard")}
                   className={`rounded-full text-xs ${
                     difficulty === level ? "" : getDifficultyColor(level)
                   }`}

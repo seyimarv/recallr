@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { BookOpen, Eye, Play, Edit, Plus, Brain, RefreshCw } from "lucide-react";
+import { BookOpen, Eye, Plus, Brain, RefreshCw } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LinkButton } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";

@@ -121,7 +121,7 @@ export function FlashcardEditor({ flashcard, onSave, onDelete, onCancel }: Flash
                   key={level}
                   variant={difficulty === level ? "default" : "outline"}
                   size="sm"
-                  onClick={() => setDifficulty(level as any)}
+                  onClick={() => setDifficulty(level as "easy" | "medium" | "hard")}
                   className={`rounded-full text-xs ${
                     difficulty === level ? "" : getDifficultyColor(level)
                   }`}
@@ -244,15 +244,4 @@ export function FlashcardEditor({ flashcard, onSave, onDelete, onCancel }: Flash
   );
 }
 
-// Custom CSS for 3D flip effect (would go in global CSS)
-const flipStyles = `
-.preserve-3d {
-  transform-style: preserve-3d;
-}
-.backface-hidden {
-  backface-visibility: hidden;
-}
-.rotate-y-180 {
-  transform: rotateY(180deg);
-}
-`; 
+ 

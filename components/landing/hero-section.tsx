@@ -77,7 +77,7 @@ function InteractiveDemo() {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [isRevealed]);
+  }, [isRevealed, cards.length]);
 
   return (
     <motion.div

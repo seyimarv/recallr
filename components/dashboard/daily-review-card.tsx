@@ -4,7 +4,7 @@ import * as React from "react";
 import { Card } from "@/components/ui/card";
 import { LinkButton } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Clock, RefreshCw, Brain, ArrowRight, Calendar } from "lucide-react";
+import { RefreshCw, Brain, ArrowRight, Calendar } from "lucide-react";
 
 export function DailyReviewCard() {
   

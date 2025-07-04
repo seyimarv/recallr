@@ -4,7 +4,7 @@ import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { User, Eye, EyeOff, Download, Trash2 } from "lucide-react";
+import { User, Download, Trash2 } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -17,7 +17,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+
 import { PasswordInput } from "@/components/ui/password-input";
 
 const passwordSchema = z.object({
@@ -33,7 +33,6 @@ type PasswordForm = z.infer<typeof passwordSchema>;
 
 export function AccountSettings() {
   const [isLoading, setIsLoading] = React.useState(false);
-  const [showPassword, setShowPassword] = React.useState(false);
 
   const form = useForm<PasswordForm>({
     resolver: zodResolver(passwordSchema),

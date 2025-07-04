@@ -17,7 +17,7 @@ export function ResourceTypeSelector({ selectedType, onTypeSelect }: ResourceTyp
     color 
   }: {
     type: "note" | "file" | "direct";
-    icon: any;
+    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
     title: string;
     description: string;
     color: string;

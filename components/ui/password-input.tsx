@@ -7,10 +7,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 export interface PasswordInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+  showPasswordLabel?: string;
+  hidePasswordLabel?: string;
+}
 
 const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
-  ({ className, ...props }, ref) => {
+  ({ className, showPasswordLabel = "Show password", hidePasswordLabel = "Hide password", ...props }, ref) => {
     const [showPassword, setShowPassword] = React.useState(false);
 
     return (
@@ -35,7 +38,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
             <Eye className="h-4 w-4" />
           )}
           <span className="sr-only">
-            {showPassword ? "Hide password" : "Show password"}
+            {showPassword ? hidePasswordLabel : showPasswordLabel}
           </span>
         </Button>
       </div>

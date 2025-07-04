@@ -60,7 +60,6 @@ export function AIGenerationStep({
   const [quizQuestionCount, setQuizQuestionCount] = React.useState(5);
   const [quizQuestionTypes, setQuizQuestionTypes] = React.useState<string[]>(["multiple-choice"]);
   const [difficulty, setDifficulty] = React.useState<"beginner" | "intermediate" | "advanced">("intermediate");
-  const [focusAreas, setFocusAreas] = React.useState<string[]>([]);
 
   const handleGenerate = () => {
     onGenerate({
@@ -70,7 +69,7 @@ export function AIGenerationStep({
       quizQuestionCount,
       quizQuestionTypes,
       difficulty,
-      focusAreas
+      focusAreas: []
     });
   };
 

@@ -3,17 +3,15 @@
 import * as React from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { FlashcardEditor, Flashcard } from "./flashcard-editor";
 import { QuizEditor, QuizQuestion } from "./quiz-editor";
 import { 
   BookOpen, 
   Brain, 
   Plus, 
-  Save, 
-  FileText,
   CheckCircle,
   AlertCircle,
+  FileText,
   Sparkles
 } from "lucide-react";
 

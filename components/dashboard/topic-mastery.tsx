@@ -18,7 +18,7 @@ export function TopicMastery({ topTopics }: TopicMasteryProps) {
         Topic Mastery
       </h3>
       <div className="space-y-4">
-        {topTopics.map((topic, index) => (
+        {topTopics.map((topic) => (
           <div key={topic.name} className="space-y-2">
             <div className="flex justify-between items-center">
               <div>

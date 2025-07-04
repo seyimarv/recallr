@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Target, Calendar, CheckCircle, Brain, RefreshCw } from "lucide-react";
+import { Target, Calendar, Brain, RefreshCw } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LinkButton } from "@/components/ui/button";
 

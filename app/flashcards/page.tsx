@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { FlashcardReview } from "@/components/review/flashcard-review";
 import { FlashcardCompletion } from "@/components/flashcards/flashcard-completion";
@@ -16,7 +17,7 @@ interface Flashcard {
   difficulty?: number;
 }
 
-export default function FlashcardsPage() {
+function FlashcardsContent() {
   const searchParams = useSearchParams();
   const resourceId = searchParams.get('resource');
   
@@ -124,5 +125,13 @@ export default function FlashcardsPage() {
         />
       </div>
     </div>
+  );
+}
+
+export default function FlashcardsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <FlashcardsContent />
+    </Suspense>
   );
 } 

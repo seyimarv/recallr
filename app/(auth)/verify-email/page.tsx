@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Mail, CheckCircle, XCircle, RefreshCw } from "lucide-react";
@@ -8,7 +9,7 @@ import { Mail, CheckCircle, XCircle, RefreshCw } from "lucide-react";
 import { AuthLayout } from "@/components/auth/auth-layout";
 import { Button } from "@/components/ui/button";
 
-export default function VerifyEmailPage() {
+function VerifyEmailContent() {
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = React.useState(false);
   const [verificationStatus, setVerificationStatus] = React.useState<'pending' | 'success' | 'error'>('pending');
@@ -165,5 +166,25 @@ export default function VerifyEmailPage() {
         </div>
       </div>
     </AuthLayout>
+  );
+}
+
+export default function VerifyEmailPage() {
+  return (
+    <Suspense fallback={
+      <AuthLayout
+        title="Loading..."
+        description="Please wait"
+      >
+        <div className="text-center space-y-4">
+          <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+            <RefreshCw className="w-8 h-8 text-blue-600 animate-spin" />
+          </div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </AuthLayout>
+    }>
+      <VerifyEmailContent />
+    </Suspense>
   );
 } 

@@ -6,11 +6,9 @@ import Link from '@docusaurus/Link';
 import {useHistory} from '@docusaurus/router';
 import {
   isRegexpStringMatch,
-  useSearchLinkCreator,
 } from '@docusaurus/theme-common';
 import {
   useAlgoliaContextualFacetFilters,
-  useSearchResultUrlProcessor,
 } from '@docusaurus/theme-search-algolia/client';
 import Translate from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
